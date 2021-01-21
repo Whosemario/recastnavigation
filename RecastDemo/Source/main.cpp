@@ -43,6 +43,7 @@
 #include "Sample_TileMesh.h"
 #include "Sample_TempObstacles.h"
 #include "Sample_Debug.h"
+#include "Sample_SVOMesh.h"
 
 #ifdef WIN32
 #	define snprintf _snprintf
@@ -61,11 +62,13 @@ Sample* createSolo() { return new Sample_SoloMesh(); }
 Sample* createTile() { return new Sample_TileMesh(); }
 Sample* createTempObstacle() { return new Sample_TempObstacles(); }
 Sample* createDebug() { return new Sample_Debug(); }
+Sample* createSVO() { return new Sample_SVOMesh(); }
 static SampleItem g_samples[] =
 {
 	{ createSolo, "Solo Mesh" },
 	{ createTile, "Tile Mesh" },
 	{ createTempObstacle, "Temp Obstacles" },
+	{ createSVO, "SVO Mesh",}
 };
 static const int g_nsamples = sizeof(g_samples) / sizeof(SampleItem);
 
@@ -486,7 +489,7 @@ int main(int /*argc*/, char** /*argv*/)
 		glEnable(GL_FOG);
 
 		if (sample)
-			sample->handleRender();
+			sample->handleRender();			// 场景渲染在这里
 		if (test)
 			test->handleRender();
 		
